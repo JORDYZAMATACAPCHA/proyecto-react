@@ -1,3 +1,4 @@
+import { useState, type FormEvent } from 'react';
 import styled from '@emotion/styled';
 
 const Formulario = styled.form`
@@ -31,12 +32,52 @@ const Boton = styled.button`
   border-radius: ${(props) => props.theme.radius};
 `;
 
+const TextoError = styled.p`
+  color: ${(props) => props.theme.colors.error};
+  margin: 0;
+`;
+
+const TextoListo = styled.p`
+  color: ${(props) => props.theme.colors.secondary};
+  margin: 0;
+`;
+
 function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [listo, setListo] = useState(false);
+
+  function enviar(e: FormEvent) {
+    e.preventDefault();
+
+    if (email === '' || password === '') {
+      setError('Rellena todos los campos');
+      setListo(false);
+      return;
+    }
+
+    setError('');
+    setListo(true);
+  }
+
   return (
-    <Formulario>
+    <Formulario onSubmit={enviar}>
       <Titulo>Iniciar sesión</Titulo>
-      <Campo type="email" placeholder="Correo electrónico" />
-      <Campo type="password" placeholder="Contraseña" />
+      <Campo
+        type="email"
+        placeholder="Correo electrónico"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <Campo
+        type="password"
+        placeholder="Contraseña"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      {error !== '' && <TextoError>{error}</TextoError>}
+      {listo && <TextoListo>Datos correctos para {email}</TextoListo>}
       <Boton type="submit">Entrar</Boton>
     </Formulario>
   );
