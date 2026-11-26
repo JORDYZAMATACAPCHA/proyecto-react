@@ -1,11 +1,11 @@
 import { useState, type FormEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Formulario,
   Titulo,
   Campo,
   Boton,
   TextoError,
-  TextoListo,
 } from '../styles/Login.styles';
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -14,19 +14,17 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [listo, setListo] = useState('');
+  const navigate = useNavigate();
 
   async function enviar(e: FormEvent) {
     e.preventDefault();
 
     if (email === '' || password === '') {
       setError('Rellena todos los campos');
-      setListo('');
       return;
     }
 
     setError('');
-    setListo('');
 
     try {
       const res = await fetch(API_URL + '/auth/login', {
@@ -35,14 +33,14 @@ function Login() {
         body: JSON.stringify({ email, password }),
       });
       const datos = await res.json();
-      console.log(datos);
 
       if (!res.ok) {
         setError(datos.message || 'Error ' + res.status);
         return;
       }
 
-      setListo('Login correcto');
+      localStorage.setItem('token', datos.data.token);
+      navigate('/');
     } catch {
       setError('No se pudo conectar con el servidor');
     }
@@ -64,7 +62,6 @@ function Login() {
         onChange={(e) => setPassword(e.target.value)}
       />
       {error !== '' && <TextoError>{error}</TextoError>}
-      {listo !== '' && <TextoListo>{listo}</TextoListo>}
       <Boton type="submit">Entrar</Boton>
     </Formulario>
   );
