@@ -1,46 +1,12 @@
 import { useState, type FormEvent } from 'react';
-import styled from '@emotion/styled';
-
-const Formulario = styled.form`
-  background: ${(props) => props.theme.colors.white};
-  padding: ${(props) => props.theme.spacing.large};
-  border-radius: ${(props) => props.theme.radius};
-  max-width: 350px;
-  margin: 80px auto;
-  display: flex;
-  flex-direction: column;
-  gap: ${(props) => props.theme.spacing.medium};
-`;
-
-const Titulo = styled.h1`
-  color: ${(props) => props.theme.colors.primary};
-  margin: 0;
-  text-align: center;
-`;
-
-const Campo = styled.input`
-  padding: ${(props) => props.theme.spacing.small};
-  border: 1px solid ${(props) => props.theme.colors.secondary};
-  border-radius: ${(props) => props.theme.radius};
-`;
-
-const Boton = styled.button`
-  padding: ${(props) => props.theme.spacing.small};
-  background: ${(props) => props.theme.colors.primary};
-  color: ${(props) => props.theme.colors.white};
-  border: none;
-  border-radius: ${(props) => props.theme.radius};
-`;
-
-const TextoError = styled.p`
-  color: ${(props) => props.theme.colors.error};
-  margin: 0;
-`;
-
-const TextoListo = styled.p`
-  color: ${(props) => props.theme.colors.secondary};
-  margin: 0;
-`;
+import {
+  Formulario,
+  Titulo,
+  Campo,
+  Boton,
+  TextoError,
+  TextoListo,
+} from '../styles/Login.styles';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -63,7 +29,7 @@ function Login() {
 
   return (
     <Formulario onSubmit={enviar}>
-      <Titulo>Iniciar sesión</Titulo>
+      <Titulo>Dota 2 Admin</Titulo>
       <Campo
         type="email"
         placeholder="Correo electrónico"

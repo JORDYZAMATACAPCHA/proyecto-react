@@ -5,8 +5,12 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f1f5f9;
-  color: #0f172a;
+  background: #0d0d0f;
+  color: #e6e6e6;
+}
+
+a {
+  color: #c8a24b;
 }
 
 button {
