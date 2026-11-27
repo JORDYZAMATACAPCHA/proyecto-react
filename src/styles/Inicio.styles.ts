@@ -13,3 +13,10 @@ export const Titulo = styled.h1`
   color: ${(props) => props.theme.colors.gold};
   margin: 0;
 `;
+
+export const Boton = styled.button`
+  padding: ${(props) => props.theme.spacing.small};
+  background: ${(props) => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.white};
+  border: none;
+`;
