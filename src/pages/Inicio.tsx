@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import Navbar from '../components/Navbar';
 import { Caja, Titulo, Boton } from '../styles/Inicio.styles';
 
 function Inicio() {
@@ -12,12 +13,15 @@ function Inicio() {
   }
 
   return (
-    <Caja>
-      <Titulo>Dota 2 Admin</Titulo>
-      <p>Bienvenido, {usuario?.username}</p>
-      <p>Panel de jugadores y equipos</p>
-      <Boton onClick={salir}>Cerrar sesión</Boton>
-    </Caja>
+    <>
+      <Navbar />
+      <Caja>
+        <Titulo>Dota 2 Admin</Titulo>
+        <p>Bienvenido, {usuario?.username}</p>
+        <p>Panel de jugadores y equipos</p>
+        <Boton onClick={salir}>Cerrar sesión</Boton>
+      </Caja>
+    </>
   );
 }
 
