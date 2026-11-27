@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
 import {
   Formulario,
   Titulo,
@@ -15,6 +16,7 @@ function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { iniciarSesion } = useAuth();
 
   async function enviar(e: FormEvent) {
     e.preventDefault();
@@ -39,7 +41,7 @@ function Login() {
         return;
       }
 
-      localStorage.setItem('token', datos.data.token);
+      iniciarSesion(datos.data.token);
       navigate('/');
     } catch {
       setError('No se pudo conectar con el servidor');
