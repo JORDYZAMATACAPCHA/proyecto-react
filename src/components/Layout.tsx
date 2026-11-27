@@ -1,14 +1,18 @@
 import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
-import { Principal } from '../styles/Layout.styles';
+import Sidebar from './Sidebar';
+import { Cuerpo, Principal } from '../styles/Layout.styles';
 
 function Layout() {
   return (
     <div>
       <Navbar />
-      <Principal>
-        <Outlet />
-      </Principal>
+      <Cuerpo>
+        <Sidebar />
+        <Principal>
+          <Outlet />
+        </Principal>
+      </Cuerpo>
     </div>
   );
 }
