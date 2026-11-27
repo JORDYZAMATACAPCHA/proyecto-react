@@ -1,27 +1,14 @@
-import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-import Navbar from '../components/Navbar';
-import { Caja, Titulo, Boton } from '../styles/Inicio.styles';
+import { Caja, Titulo } from '../styles/Inicio.styles';
 
 function Inicio() {
-  const navigate = useNavigate();
-  const { usuario, cerrarSesion } = useAuth();
-
-  function salir() {
-    cerrarSesion();
-    navigate('/login');
-  }
+  const { usuario } = useAuth();
 
   return (
-    <>
-      <Navbar />
-      <Caja>
-        <Titulo>Dota 2 Admin</Titulo>
-        <p>Bienvenido, {usuario?.username}</p>
-        <p>Panel de jugadores y equipos</p>
-        <Boton onClick={salir}>Cerrar sesión</Boton>
-      </Caja>
-    </>
+    <Caja>
+      <Titulo>Bienvenido, {usuario?.username}</Titulo>
+      <p>Desde aquí gestionas los jugadores y los equipos de Dota 2.</p>
+    </Caja>
   );
 }
 
