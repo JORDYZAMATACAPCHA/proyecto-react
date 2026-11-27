@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Inicio from './pages/Inicio';
+import Perfil from './pages/Perfil';
 import ProtectedRoute from './components/ProtectedRoute';
 import Layout from './components/Layout';
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <Route element={<ProtectedRoute />}>
         <Route element={<Layout />}>
           <Route path="/" element={<Inicio />} />
+          <Route path="/perfil" element={<Perfil />} />
         </Route>
       </Route>
     </Routes>
